@@ -1,0 +1,61 @@
+{% extends 'homepage.html' %} 
+{% block content %} 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/tab3.css' %}"/>
+
+  <form action="{% url 'tab-3' %}" id="page1" class="form-container" method="POST">
+    {% csrf_token %}
+
+    <div class="tab1">
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" id="tb1">1</button>------
+          <button type="button" class="btn btn-secondary">2</button>------
+          <button type="button" class="btn btn-secondary" id="tb3">3</button>------
+          <button type="button" class="btn btn-secondary">4</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="usernamefield">
+      <label for="username" id="usernamelabel">What should we call you?</label>
+      <input type="text" id="username" name="username" placeholder="      username"/>
+    </div>
+
+
+
+    <div class="passwordfield">
+        <label for="password" id="passwordlabel">Enter your password</label>
+        <input type="password" id="password" name="password" />
+      </div>
+
+      <div class="repasswordfield">
+        <label for="repassword" id="repasswordlabel">Confirm password</label>
+        <input type="password" id="repassword" name="repassword" />
+        {% if error %}
+      <p class="errormsg">{{error_message}}</p>
+    {% endif %}  
+      </div>
+    
+      
+       
+    <button type="submit" id="button1">Next</button>
+  </form>
+<script>
+    function disableScroll() {
+  // Calculate the width of the scrollbar to prevent layout shift
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+  // Store the current scroll position
+  const scrollY = window.scrollY;
+
+  // Add styles to disable scrolling
+  document.body.style.overflow = 'hidden';
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+}
+</script>
+
+{% endblock content %}

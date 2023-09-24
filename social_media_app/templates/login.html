@@ -1,0 +1,22 @@
+{% extends 'homepage.html' %} 
+{% block content %} 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/login.css' %}"/>
+
+<form action="{% url 'Log-in' %}" method="POST" class="form-container disable-scrolling" >
+    {% csrf_token %}
+ 
+
+  <div class="usernamefield">
+    <label for="username" id="usernamelabel">Enter your username</label>
+    <input type="text" name="username" id="username" />
+  </div>
+  
+  <div class="passwordfield">
+    <label for="password" id="passwordlabel">Enter your password</label>
+    <input type="password" id="password" name="password" />
+  </div>
+
+  <button type="submit" id="button1">Submit</button>
+</form>
+{% endblock content %}

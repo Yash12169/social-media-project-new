@@ -1,0 +1,33 @@
+{% extends 'homepage.html' %} 
+{% block content %} 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/tab2.css' %}"/>
+
+<form action="{% url 'tab-2' %}" method="POST" class="form-container disable-scrolling" >
+    {% csrf_token %}
+ 
+  <div class="tab1">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-secondary" id="tb1">1</button>------
+        <button type="button" class="btn btn-secondary" id="tb2">2</button>------
+        <button type="button" class="btn btn-secondary">3</button>------
+        <button type="button" class="btn btn-secondary">4</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="agefield">
+    <label for="age" id="agelabel">Enter your birthday</label>
+    <input type="date" name="birthdate" id="age" required />
+    {% if error %}
+    <p class="errormsg">{{error_message}}</p>
+  {% endif %}
+  </div>
+  
+ 
+    
+
+  <button type="submit" id="button1">Next</button>
+</form>
+{% endblock content %}

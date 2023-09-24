@@ -1,0 +1,52 @@
+{% extends 'homepage.html' %} 
+{% block content %} 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/tab4.css' %}"/>
+
+  <form action="{% url 'tab-4' %}" id="page1" class="form-container" method="POST">
+    {% csrf_token %}
+
+    <div class="tab1">
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" id="tb1">1</button>------
+          <button type="button" class="btn btn-secondary">2</button>------
+          <button type="button" class="btn btn-secondary" id="tb3">3</button>------
+          <button type="button" class="btn btn-secondary" id="tb4">4</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="profilepicfield">
+      <label for="profilepic" id="profilepiclabel">upload your profile photo</label>
+      <input type="image" id="profilepic" name="profilepic" />
+    </div>
+
+
+      <div class="discriptionfield">
+        <label for="discription" id="discriptionlabel">Tell us a little about yourself</label>
+        <textarea name="discription" id="discription" cols="30" rows="10"></textarea>    
+      </div>
+    
+  
+       
+    <button type="submit" id="button1">Next</button>
+  </form>
+<script>
+    function disableScroll() {
+  // Calculate the width of the scrollbar to prevent layout shift
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+  // Store the current scroll position
+  const scrollY = window.scrollY;
+
+  // Add styles to disable scrolling
+  document.body.style.overflow = 'hidden';
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+}
+</script>
+
+{% endblock content %}
