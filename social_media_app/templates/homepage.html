@@ -110,6 +110,8 @@
         margin-left: 1%;
         color: white;
         font-size: 260%;
+        text-decoration: none;
+        font-weight: 600;
       }
       #navbutt {
         display: flex;
@@ -145,7 +147,10 @@
         border: 1px solid white;
         border-radius: 15px;
       }
-
+      ::selection{
+        background-color: #da6a6a;
+        color: white;
+      }
       #item3,
       #item4,
       #item7,
@@ -254,18 +259,15 @@
   <body {% if disable_scroll %}class="disable-scrolling" {% endif %}>
     <div class="container">
       <div class="item" id="navbar">
-        <h1 class="appname">SocialVista</h1>
+        <a  href="/" class="appname" >SocialVista</a>
         <div class="navlinks">
           <a href="/" class="navlink">Home</a>
           <a href="/Privacy" class="navlink">Privacy</a>
           <a href="/About" class="navlink">About</a>
         </div>
-        {% if request.user.is_authenticated %}
-        <button id="navbutt">Log out</button>
-        {% else %}
+        
         <a href="/tab-1" id="navbutt">Sign up</a>
         <a href="/Log-in" id="navbutt">Log in</a>
-        {% endif %}
       </div>
 
       {% block content %}
@@ -332,7 +334,7 @@
       // Wait for the DOM to load
       document.addEventListener("DOMContentLoaded", function () {
         var typed = new Typed(".auto-type", {
-          strings: ["privacy", "simplicity", "SocialVista"],
+          strings: ["Privacy", "Simplicity", "SocialVista"],
           typeSpeed: 150,
           backSpeed: 50,
           loop: false,

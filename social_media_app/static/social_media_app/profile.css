@@ -1,0 +1,84 @@
+.container2{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding-right: 5%;
+    padding-left: 25%;
+    /* background-color:   Goldenrod; */
+}
+.profilepic{
+    /* background-color: aqua; */
+    margin-top: 5%;
+    width: 200px;
+    height: 200px;
+}
+.details{
+    display: grid;
+    /* background-color: Plum; */
+    width: 80%;
+    height: 100%;
+    margin-top: 5%;
+    margin-left: -28%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    font-family: 'Montserrat', sans-serif;
+}
+.profilepic img{
+    width: 100%;
+    height: 100%;
+}
+.name{
+    /* background-color: burlywood; */
+    display: flex;
+    align-items: center;
+}
+.status{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    /* background-color: peru; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -18%;
+}
+.discription{
+    margin-top: -5%;
+    /* background-color: peachpuff; */
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.editprofile{
+    display: flex;
+    align-items: center;
+
+}
+.editprofile a{
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 35%;
+    background-color: #da6a6a;
+}
+.line{
+    width: 153%;
+    height: 1%;
+    background-color:black;
+    margin-top: 20%;
+}
+.post{
+    /* background-color: darkcyan; */
+    width: 50%;
+    margin-top: 25%;
+    margin-left: -50%;
+    
+}

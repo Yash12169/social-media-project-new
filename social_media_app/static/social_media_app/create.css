@@ -1,0 +1,70 @@
+.container2{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+.head{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
+    height: fit-content;
+    font-size: 54px;
+    font-family: "Asap Condensed", sans-serif;
+}
+.box{
+    font-family: "Asap Condensed", sans-serif;
+    border: 4px dashed #da6a6a;
+    width: 90%;
+    color: #da6a6a;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+    justify-self: center;
+    height: 70%;
+    margin-top: -20%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.box input{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+.box label{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 54px;
+}
+.caption{
+    width: 90%;
+    align-self: center;
+    justify-self: center;
+    margin-top: -10%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
+    display: flex;
+}
+textarea{
+    border: 3px solid #da6a6a;
+    border-radius: 20px;
+    padding: 3%;
+    width: 40%;
+}
+
+button{
+    width: 150px;
+    background-color: #da6a6a;
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 50px;
+    margin:auto;
+    font-family: "IBM Plex Mono", monospace; 
+    font-size: large;
+}

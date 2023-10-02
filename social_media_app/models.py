@@ -3,12 +3,13 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 User= get_user_model()
-
+class UserProfile(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='Profile/')
 class profile(models.Model):
     user=models.OneToOneField(User, related_name='profile',on_delete=models.CASCADE)
     discription= models.TextField(default="")
     image= models.ImageField()
-    birthday=models.DateField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateField(auto_now=True)
 

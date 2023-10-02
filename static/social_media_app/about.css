@@ -1,0 +1,30 @@
+.matter{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+.mainhead
+{
+    color:  #da6a6a;
+    font-family: "Asap Condensed", sans-serif;
+    font-size: 100px;
+    margin-top: -15%;
+    margin-bottom: 4%;
+    margin-left: 3%;
+}
+.content{
+    font-size: large;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    font-family: 'Open Sans', sans-serif;
+}
+span{
+    color:  #da6a6a;
+    font-family: "Signika", sans-serif;
+    font-size: xx-large;
+}
+
+#item11{
+    visibility: hidden;
+}

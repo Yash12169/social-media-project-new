@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path,include
-from social_media_app.views import index_view,tab1_view,tab2_view,tab3_view,tab4_view,login_view,privacy_view
+from social_media_app.views import home_view,tab1_view,tab2_view,tab3_view,tab4_view,login_view,privacy_view,index_view,log_out_view,profile_view,create_view
 from . import views
 urlpatterns = [
-   path('' , index_view),
+   path('' , home_view),
+   path('index/' , views.index_view,name='index'),
    path('tab-1/', views.tab1_view,name='tab-1'),
    path('tab-2/' , views.tab2_view,name='tab-2'),
    path('tab-3/', views.tab3_view,name='tab-3'),
@@ -11,6 +12,9 @@ urlpatterns = [
    path('Log-in/' , views.login_view,name='Log-in'),
    path('Privacy/' , views.privacy_view,name='Privacy'),
    path('About/' , views.about_view,name='About'),
+   path('Log-out/' , views.log_out_view,name='Log-out'),
+   path('Profile/', views.profile_view,name='Profile'),
+   path('Create/', views.create_view,name='Create'),
    
   
 ]

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/create.css' %}"/>
+<div class="container2">
+    <div class="head">Drag images or videos from your computer or click on the box below</div>
+    <div class="box"><input type="file" id="inputbox" name="inputbox"><label for="inputbox">Click or drag a file here to upload</label></div>
+    <div class="caption">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Enter a caption for your Image/Video"></textarea>
+        <button type="submit">Upload</button>
+    </div>
+</div>
+{% endblock content %}
+    

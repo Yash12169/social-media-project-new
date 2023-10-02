@@ -20,21 +20,22 @@
 
     <div class="usernamefield">
       <label for="username" id="usernamelabel">What should we call you?</label>
-      <input type="text" id="username" name="username" placeholder="      username"/>
+      <input type="text" id="username" name="username" placeholder="    Enter Your Username" required/>
     </div>
 
 
 
     <div class="passwordfield">
         <label for="password" id="passwordlabel">Enter your password</label>
-        <input type="password" id="password" name="password" />
+        <input type="password" id="password" name="password" placeholder="    Enter Your Password" required/>
       </div>
 
       <div class="repasswordfield">
         <label for="repassword" id="repasswordlabel">Confirm password</label>
-        <input type="password" id="repassword" name="repassword" />
+        <input type="password" id="repassword" name="repassword" placeholder="    Re-enter Password" required/>
         {% if error %}
       <p class="errormsg">{{error_message}}</p>
+    
     {% endif %}  
       </div>
     

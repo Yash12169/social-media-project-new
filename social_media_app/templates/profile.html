@@ -1,0 +1,28 @@
+{% extends 'index.html' %} 
+{% block content %} 
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'social_media_app/profile.css' %}"
+/>
+
+<div class="container2 disable-scrolling">
+  
+    <div class="profilepic">
+        <img src="https://static.thenounproject.com/png/138926-200.png" alt="">
+      </div>
+      <div class="details">
+        
+        <div class="name">{{username}}</div>
+        <div class="editprofile"><a href="">edit Profile</a></div>
+        <div class="status"><span> 0 followers</span>  <span>0 following</span>  <span>0 posts</span></div>
+        <div class="discription">{{discription}}</div>
+      </div>
+      <div class="line"></div>
+      <div class="post">
+        <h3>post</h3>
+      </div>
+</div>
+
+{% endblock content %}
