@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from social_media_app.models import User,UserProfile
 from datetime import date,datetime
 from django.contrib.auth.models import auth
-
+from .forms import Profile
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 
@@ -81,18 +81,9 @@ def tab3_view(request):
             error_message = "*Username is already taken"
             return render(request, 'tab3.html', {'error': True, 'error_message': error_message})
         if password == repassword:
-            tab3_data = {
-            'username' : username,
-            'password' : password,
-            }
-            User.objects.create_user(username=username,password=password)
-            user=auth.authenticate(username=username,password=password)
-            if user:
-                request.session['user_id'] = user.id
-                request.session['name']=user.username
-                return redirect('tab-4')
-            else:
-                return render(request,'tab3.html',{'error':True,'error_message':"*Authentication Unsuccessfull"})
+            request.session['username'] = username
+            request.session['password'] = password
+            return redirect('tab-4')
         else:
             error_message="*Passwords do not match"
             return render(request,'tab3.html',{'error':True,'error_message':error_message})
@@ -100,55 +91,57 @@ def tab3_view(request):
         return render(request, 'tab3.html' , {'disable_scroll' : disable_scroll})
 
 
-# def tab4_view(request):
-#     user_id = request.session.get('user_id')
-#     disable_scroll=True
-#     if request.method == 'POST' and user_id:
-#         image=request.FILES.get('profilepic')
-#         user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-        
-#         # Update the profile with the new image
-#         if image:
-#             user_profile.image = image
-#             user_profile.save()
-#         discription= request.POST['discription']
-#         user=User.objects.get(id=user_id)
-#         auth.login(request,user)
-#         request.session['user_id']=user.id
-#         request.session['image']=user.image
-#         request.session['discription']=user.discription
-#         return redirect('index')
-    
-#     else:
-#         return render(request , 'tab4.html' , {'disable_scroll' : disable_scroll})
-
-
-
-
-
-
 def tab4_view(request):
+    username=request.session.get('username')
+    password=request.session.get('password')
+    disable_scroll=True
     if request.method == 'POST':
-        # Assuming you have a way to create a new user account
-        # and authenticate the user after submitting data
-        username = request.POST['username']
-        password = request.POST['password']
-
-        # Create a new user account
-        user = User.objects.create_user(username=username, password=password)
-
-        # Authenticate the user
-        auth.login(request, user)
-
-        # Continue processing the profile image upload
-        image = request.FILES.get('profilepic')
-        if image:
-            user.userprofile.image = image
-            user.userprofile.save()
-
-        return redirect('index')
+        profilepic=request.FILES.get('profilepic')
+        request.session['profilepic'] = profilepic
+        discription= request.POST['discription']
+        request.session['discription']=discription
+        User.objects.create_user(username=username,password=password)
+        user=auth.authenticate(username=username,password=password)
+        if user:
+           
+            auth.login(request,user)
+            user_profile, created = UserProfile.objects.get_or_create(user=user)
+            user_profile.profilepic = profilepic
+            user_profile.save()
+            return redirect('index')
+        else:
+            return render(request,'tab4.html',{'error':True,'error_message':"*Authentication Unsuccessfull"})
+    
     else:
-        return render(request, 'tab4.html')
+        return render(request , 'tab4.html' , {'disable_scroll' : disable_scroll})
+
+
+
+
+
+
+# def tab4_view(request):
+#     if request.method == 'POST':
+#         # Assuming you have a way to create a new user account
+#         # and authenticate the user after submitting data
+#         username = request.POST['username']
+#         password = request.POST['password']
+
+#         # Create a new user account
+#         user = User.objects.create_user(username=username, password=password)
+
+#         # Authenticate the user
+#         auth.login(request, user)
+
+#         # Continue processing the profile image upload
+#         image = request.FILES.get('profilepic')
+#         if image:
+#             user.userprofile.image = image
+#             user.userprofile.save()
+
+#         return redirect('index')
+#     else:
+#         return render(request, 'tab4.html')
 
 
 
@@ -197,16 +190,30 @@ def log_out_view(request):
 @login_required
 def profile_view(request):
     disable_scroll=True
+    form=Profile()
     username=request.session.get('username')
     discription=request.session.get('discription')
-    image=request.session.get('image')
     if not discription:
         discription = ""
-    if not image:
-        return render(request,'profile.html',{'discription':discription,'username':username})
-                      
-    return render(request,'profile.html',{'discription':discription,'username':username,'image':image}, {'disable_scroll' : disable_scroll})
+    
+    return render(request,'profile.html',{'discription':discription,'username':username,'disable_scroll' : disable_scroll,'form':form})
 
 @login_required
 def create_view(request):
     return render(request,'create.html')
+
+
+
+@login_required
+def settings_view(request):
+    disable_scroll=True
+    return render(request,'settings.html',{'disable_scroll' : disable_scroll})
+
+@login_required
+def set_theme(request):
+    theme=request.GET.get('theme','')
+
+    response=HttpResponse()
+    if theme:   
+        response.set_cookie('theme',theme)
+    return response

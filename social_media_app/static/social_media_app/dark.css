@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+  }
+  .container1 {
+    align-items: center;
+    background-color: #1e2431;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .container2 {
+    display: flex;
+    justify-content: center;
+  }
+  .container3 {
+    display: flex;
+    background-color: white;
+  }
+
+  .appname {
+    margin-top: 5%;
+    font-family: "Caveat", cursive;
+    margin-right: auto;
+
+    color: white;
+    font-size: 260%;
+    text-decoration: none;
+    font-weight: 600;
+
+    margin-bottom: 30%;
+  }
+  .buttons {
+    font-size: x-large;
+
+    margin-top: 7%;
+    width: 100%;
+    text-align: center;
+    height: 6vh;
+    text-align: left;
+    margin-left: 6%;
+    margin-bottom: 5%;
+  }
+  .buttons:hover {
+    background-color: #e27b7bd6;
+  }
+  .buttons a {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    text-decoration: none;
+  }
+  ::selection {
+    background-color: #1e2431;
+    color: white;
+  }
+  img {
+    margin-top: 1vh;
+    height: 24px;
+    width: 28px;
+    margin-right: 3%;
+    justify-self: center;
+    align-self: center;
+  }
+  span {
+    margin-bottom: 1%;
+  }
+  .searchbar {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 5%;
+
+    margin-left: 10%;
+  }
+  .sea input {
+    width: 600px;
+    height: 97%;
+    border: 1px solid black;
+    border-radius: 20px 15px 15px 20px;
+    padding-left: 3%;
+  }
+  .but a {
+    text-decoration: none;
+    color: white;
+  }
+  .but {
+    width: 10%;
+    background-color: #1e2431;
+    margin-left: auto;
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1%;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .head {
+    width: 100%;
+    font-size: xx-large;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    color: #1e2431;
+    margin-top: 5%;
+  }
+ 
+
+.head{
+    color: #7a7ad0 !important;
+  }
+.container1 , .container2 , .container3{
+    background-color: #1e2431 !important;
+    color: #7a7ad0 !important;
+  }
+.but{
+    background-color: #7a7ad0 !important;
+  }
+span{
+    color: #7a7ad0 !important;
+  }
+.appname{
+    color: #7a7ad0 !important; 
+  }
+  .whitespace{
+    height: 100%;
+    background-color: white;
+    width: 2px;
+  }
+  
+.box{
+  border-color: #7a7ad0 !important;
+  color: #7a7ad0 !important;
+}
+.crbt{
+  background-color: #7a7ad0;
+  color: white;
+}
+#txt2{
+  border: 2px solid #7a7ad0;
+}
+::selection{
+
+  background-color: #7a7ad0 !important;
+  color: white !important;
+}
+#theme-switch-button{
+  color: #7a7ad0;
+}
+.buttons:hover {
+  background-color: #43506d !important;
+}

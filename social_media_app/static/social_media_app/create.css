@@ -1,7 +1,12 @@
-.container2{
+.container3{
     display: grid;
-    grid-column-start: 2;
-    grid-column-end: 4;
+    margin-left: -765px;
+    /* grid-column-start: 2;
+    grid-column-end: 4; */
+}
+.container2{
+    width: 1px;
+    background-color: white;
 }
 .head{
     grid-column-start: 1;
@@ -12,6 +17,7 @@
     font-family: "Asap Condensed", sans-serif;
 }
 .box{
+    cursor: pointer;
     font-family: "Asap Condensed", sans-serif;
     border: 4px dashed #da6a6a;
     width: 90%;
@@ -29,11 +35,13 @@
     
 }
 .box input{
+    cursor: pointer;
     height: 100%;
     width: 100%;
     display: none;
 }
 .box label{
+    cursor: pointer;
     height: 100%;
     width: 100%;
     display: flex;
@@ -57,7 +65,11 @@ textarea{
     padding: 3%;
     width: 40%;
 }
-
+.space{
+    height: 100%;
+    width: 2px;
+    background-color: white;
+}
 button{
     width: 150px;
     background-color: #da6a6a;

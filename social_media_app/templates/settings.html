@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/settings.css' %}"/>
+<div class="container2 disable-scrolling"></div>
+<div class="container3 disable-scrolling">
+    <div class="head">Settings</div>
+    
+    <div class="changepass"><a href="">Change Your Password</a></div>
+    <div class="logout"><a href="/Log-out">Log-out</a></div>
+    <div class="deleteaccount"><a href="">Delete Account</a></div>
+    
+</div>
+{% endblock content %}
+    

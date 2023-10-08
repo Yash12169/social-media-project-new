@@ -8,6 +8,9 @@
     padding-left: 25%;
     /* background-color:   Goldenrod; */
 }
+*{
+    overflow: hidden;
+}
 .profilepic{
     /* background-color: aqua; */
     margin-top: 5%;

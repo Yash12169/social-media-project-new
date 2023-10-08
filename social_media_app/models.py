@@ -5,7 +5,11 @@ from django.contrib.auth import get_user_model
 User= get_user_model()
 class UserProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='Profile/')
+    profilepic = models.FileField(upload_to='images')
+
+
+
+    
 class profile(models.Model):
     user=models.OneToOneField(User, related_name='profile',on_delete=models.CASCADE)
     discription= models.TextField(default="")

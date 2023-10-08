@@ -52,151 +52,156 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-      body {
-        display: grid;
-        grid-template-columns: 1fr 3fr 2fr;
-      }
-      .container1 {
-        align-items: center;
-        background-color: #da6a6a;
-        display: flex;
-        height: 100vh;
-        flex-direction: column;
-        
-      }
-      .container2 {
-        display: flex;
-        justify-content: center;
-      }
-      .container3 {
-        display: flex;
-        background-color: white;
-    
-      }
-
-      .appname {
-        margin-top: 5%;
-        font-family: "Caveat", cursive;
-        margin-right: auto;
-    
-        color: white;
-        font-size: 260%;
-        text-decoration: none;
-        font-weight: 600;
-        
-        margin-bottom: 30%;
-      }
-      .buttons{
-        font-size:x-large;
-     
-        margin-top: 7%;
-        width: 100%;
-        text-align: center;
-        height: 6vh;
-        text-align: left;
-        margin-left: 6%;
-        margin-bottom:5% ;
-    }
-    .buttons:hover{
-        background-color: #e27b7bd6;
-        
-    }
-    .buttons a{
-        font-family: 'Montserrat', sans-serif;
-        color: white;
-        text-decoration: none;
-    }
-    ::selection{
-        background-color: #da6a6a;
-        color: white;
-      }
-    img{
-        margin-top: 1vh;
-        height: 24px;
-        width: 28px;
-        margin-right: 3%;
-        justify-self: center;
-        align-self: center;
-    }
-    span{
-        margin-bottom: 1%;
-    }
-    .searchbar{
-      margin-top: 3%;
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-     height: 5%;
-      
-      margin-left: 10%;
-    }
-    .sea input{
-      width: 600px;
-      height: 97%;
-      border: 1px solid black;
-      border-radius: 20px 15px 15px 20px;
-      padding-left: 3%;
-    }
-    .but a{
-      text-decoration: none;
-      color: white;
-    }
-    .but{
-      width: 10%;
-      background-color: #da6a6a;
-      margin-left: auto;
-      border-radius: 0px 20px 20px 0px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: -1%;
-      font-family: "IBM Plex Mono", monospace;
-    }
-    .head{
-      width: 100%;
-      font-size: xx-large;
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
-      color: #da6a6a;
-      margin-top: 5%;
-    }
-    
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      id="theme-style"
+      type="text/css"
+      href="{% static 'social_media_app/dark.css' %}"
+    />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      id="theme-style"
+      type="text/css"
+      href="{% static 'social_media_app/light.css' %}"
+    />
   </head>
   <body {% if disable_scroll %}class="disable-scrolling" {% endif %}>
-    <div class="container1">
+    <div class="container1 ">
       <div class="appname">SocialVista</div>
-       
-        <div class="buttons"><a href="/"><img src="https://cdn-icons-png.flaticon.com/128/25/25694.png" alt=""><span>Home </span></a></div>
-        <div  class="buttons"><a href=""><img src= "https://cdn2.iconfinder.com/data/icons/flaticons-solid/18/explore-1-512.png" alt=""><span>Explore</span></a></div>
-        <div  class="buttons"><a href=""><img src="https://cdn-icons-png.flaticon.com/128/3034/3034023.png" alt=""><span>Message</span></a></div>
-        <div  class="buttons"><a href=""><img src="https://cdn-icons-png.flaticon.com/128/2645/2645897.png" alt=""><span>Notifications</span></a></div>
-        <div  class="buttons"><a href="/Create"><img src="https://static.thenounproject.com/png/1202533-200.png" id="createicon" alt=""><span>Create</span></a></div>
-        <div  class="buttons"><a href="/Profile"><img src="https://static.thenounproject.com/png/138926-200.png" alt=""><span>Profile</span></a></div>
-        <div  class="buttons"><a href=""><img src="https://static.thenounproject.com/png/6119305-200.png" alt=""><span>settings </span></a></div>
-        <div  class="buttons"><a href="/Log-out"><img src="https://icons.veryicon.com/png/128/miscellaneous/ui-basic-linear-icon/logout-33.png" alt=""><span>Log-out </span></a></div>
-        
+
+      <div class="buttons">
+        <a href="/"
+          ><img
+            src="https://cdn-icons-png.flaticon.com/128/25/25694.png"
+            alt=""
+          /><span>Home </span></a
+        >
+      </div>
+      <div class="buttons">
+        <a href="">
+          <img
+            src="data:image/png;base64,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"
+            alt="Light Theme"
+            id="sun-icon"
+          />
+          <img
+            src="data:image/jpeg;base64,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"
+            alt="Dark Theme"
+            id="moon-icon"
+          /><a href="#" id="theme-switch-button"> Theme </a>
+        </a>
+      </div>
+      <div class="buttons">
+        <a href=""
+          ><img
+            src="https://cdn-icons-png.flaticon.com/128/3034/3034023.png"
+            alt=""
+          /><span>Message</span></a
+        >
+      </div>
+      <div class="buttons">
+        <a href=""
+          ><img
+            src="https://cdn-icons-png.flaticon.com/128/2645/2645897.png"
+            alt=""
+          /><span>Notifications</span></a
+        >
+      </div>
+      <div class="buttons">
+        <a href="/Create"
+          ><img
+            src="https://static.thenounproject.com/png/1202533-200.png"
+            id="createicon"
+            alt=""
+          /><span>Create</span></a
+        >
+      </div>
+      <div class="buttons">
+        <a href="/Profile"
+          ><img
+            src="https://static.thenounproject.com/png/138926-200.png"
+            alt=""
+          /><span>Profile</span></a
+        >
+      </div>
+      <div class="buttons">
+        <a href="/Settings"
+          ><img
+            src="https://static.thenounproject.com/png/6119305-200.png"
+            alt=""
+          /><span>settings </span></a
+        >
+      </div>
+     
     </div>
-    
+
     {% block content %}
     <div class="container2">
+      <div class="whitespace"></div>
       <div class="searchbar">
-        <div class="sea"><input type="text" placeholder="Search"></div>
+        <div class="sea"><input type="text" placeholder="Search" /></div>
         <div class="but"><a href="">Search</a></div>
       </div>
-      <hr>
+      <hr />
     </div>
-    <div class="container3">
+
+    <div class="container3 dark-container3">
       <div class="head">Suggested for you</div>
     </div>
     {% endblock content %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to set the theme in cookies
+        function setTheme(theme) {
+          document.cookie = `theme=${theme}; path=/; expires=Thu, 31 Dec 2099 23:59:59 UTC;`;
+        }
+
+        // Function to load the CSS based on the theme
+        function loadTheme() {
+          const theme = getTheme();
+          const themeStyle = document.getElementById("theme-style"); // Get the element by ID
+
+          if (theme === "dark") {
+            themeStyle.href = "{% static 'social_media_app/dark.css' %}"; // Set the href directly
+          } else {
+            themeStyle.href = "{% static 'social_media_app/light.css' %}"; // Set the href directly
+          }
+        }
+
+        // Function to get the current theme from cookies
+        function getTheme() {
+          const cookies = document.cookie.split("; ");
+          for (const cookie of cookies) {
+            const [name, value] = cookie.split("=");
+            if (name === "theme") {
+              return value;
+            }
+          }
+          return "light"; // Default theme
+        }
+
+        // Load the initial theme when the page loads
+        window.addEventListener("load", loadTheme);
+
+        // Add a click event listener to the theme switch button
+        document
+          .getElementById("theme-switch-button")
+          .addEventListener("click", () => {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            setTheme(newTheme);
+            loadTheme();
+          });
+      });
+    </script>
   </body>
 </html>

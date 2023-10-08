@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
-from social_media_app.views import home_view,tab1_view,tab2_view,tab3_view,tab4_view,login_view,privacy_view,index_view,log_out_view,profile_view,create_view
+from social_media_app.views import home_view,set_theme,settings_view,tab1_view,tab2_view,tab3_view,tab4_view,login_view,privacy_view,index_view,log_out_view,profile_view,create_view
 from . import views
 urlpatterns = [
    path('' , home_view),
@@ -15,6 +15,7 @@ urlpatterns = [
    path('Log-out/' , views.log_out_view,name='Log-out'),
    path('Profile/', views.profile_view,name='Profile'),
    path('Create/', views.create_view,name='Create'),
-   
+   path('Settings/', views.settings_view,name='Settings'),
+   path('set_theme/',views.set_theme,name='set_theme')
   
 ]

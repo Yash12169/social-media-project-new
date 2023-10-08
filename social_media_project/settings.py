@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_media_app',
+
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+NPM_BIN_PATH = "C:\Program Files\nodejs\npm.cmd"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -122,3 +123,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+TAILWIND_APP_NAME="theme"
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

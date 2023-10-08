@@ -1,0 +1,58 @@
+
+.container3{
+    
+    width: 249%;
+    height: 100%;
+    margin-left: -765px;
+    display: grid;
+    grid-template-rows: repeat(1fr,5);
+    grid-template-columns: 1fr;
+    margin-right: -30%;
+    overflow: hidden;
+}
+.container2{
+    background-color: white !important;
+    width: 10px;
+}
+.head
+{
+    
+    margin-top: auto;
+    text-align: left;
+    font-size: 54px;
+    padding-left: 3%;
+    margin-top: 5%;
+}
+.theme,.changepass,.deleteaccount,.logout{
+    background-color: white !important;
+    color: black !important;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 3%;
+    height: 30%;
+    font-size: xx-large;
+    width: 90%;
+    border: 1px solid white !important;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+}
+.theme a,.changepass a,.deleteaccount a,.logout a{
+    text-decoration: none;
+    color: black !important;
+    background-color: white !important;
+}
+.theme:hover{
+    background-color: rgb(216, 216, 216);
+}
+.changepass:hover{
+    background-color: rgb(216, 216, 216);
+}
+.logout:hover{
+    background-color: rgb(216, 216, 216);
+}
+.deleteaccount:hover{
+    background-color: rgb(216, 216, 216);
+}
+
+
