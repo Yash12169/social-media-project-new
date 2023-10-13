@@ -6,7 +6,7 @@
     grid-template-rows: 1fr 1fr 1fr 1fr;
     padding-right: 5%;
     padding-left: 25%;
-    /* background-color:   Goldenrod; */
+
 }
 *{
     overflow: hidden;
@@ -14,7 +14,6 @@
 .profilepic{
     overflow: hidden;
     position: relative;
-
     border: 1px solid white;
     border-radius: 50%;
     margin-top: 5%;
@@ -23,7 +22,7 @@
 }
 .details{
     display: grid;
-    /* background-color: Plum; */
+
     width: 80%;
     height: 100%;
     margin-top: 5%;
@@ -42,14 +41,13 @@
     margin-top: -1%;
 }
 .name{
-    /* background-color: burlywood; */
+    
     display: flex;
     align-items: center;
 }
 .status{
     grid-column-start: 1;
     grid-column-end: 4;
-    /* background-color: peru; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,7 +55,6 @@
 }
 .discription{
     margin-top: -5%;
-    /* background-color: peachpuff; */
     grid-column-start: 1;
     grid-column-end: 3;
 }
@@ -86,11 +83,44 @@
     height: 1%;
     background-color:black;
     margin-top: 20%;
+
 }
 .post{
-    /* background-color: darkcyan; */
+    background-color: darkcyan;
     width: 50%;
     margin-top: 25%;
     margin-left: -50%;
+    color: purple;
+    height: auto;
+}
+.buttonsg{
+    color: plum;
+    margin-top: 25%;
+    margin-right: auto;
+    margin-left: -70%;
+    height: 100%;
+    width: 100%;
+}
+
+.buttonsg a{
+    margin-top: 3%;
+
+    display: flex;
+    border: 1px solid black;
+    border-radius: 60px;
+    margin-right: 1%;
+    width: 99%;
+    height: 30%;
+    font-family: "Montserrat", sans-serif;
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: white;
+    color: black;
     
+}
+
+.buttonsg a:hover{
+    background-color: rgb(216, 216, 216);
 }

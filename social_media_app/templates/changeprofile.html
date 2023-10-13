@@ -1,0 +1,13 @@
+{% extends 'editprofile.html' %}
+
+{% block contents %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/changeprofile.css' %}"/>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+{% endblock contents %}
+    

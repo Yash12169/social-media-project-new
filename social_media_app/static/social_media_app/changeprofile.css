@@ -1,0 +1,17 @@
+input{
+    border: 1px solid black;
+    border-radius: 20px;
+    
+    margin-top: 3%;
+    margin-left: 20%;
+    color: black;
+}
+button{
+    height: 20px;
+    width: 50px;
+    margin-left: 40%;
+    margin-top: 3%;
+}
+label{
+    display: none;
+}

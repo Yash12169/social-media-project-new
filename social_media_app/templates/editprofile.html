@@ -1,12 +1,12 @@
 {% extends 'index.html' %} 
 {% block content %} 
 {% load static %}
-<link  rel="stylesheet" type="text/css" href="{% static 'social_media_app/profile.css' %}"/>
+<link  rel="stylesheet" type="text/css" href="{% static 'social_media_app/editprofile.css' %}"/>
 
 <div class="container2 disable-scrolling">
   <div class="profilepic">
     {% if profilepic %}
-    <img src="{{ profilepic.url }}" alt="{{ profilepic.profilepic.name }}">
+    <img src="{{profilepic.url}}" alt="">
     {% else %}
     <img src="https://static.thenounproject.com/png/138926-200.png" alt="">
     {% endif %}
@@ -15,19 +15,28 @@
   
   <div class="details">
       <div class="name">{{username}}</div>
-      
       <div class="status"><span> 0 followers</span>  <span>0 following</span>  <span>0 posts</span></div>
-      {% if discriptionnew %}
-      <div class="discription">{{discriptionnew}}</div>
-      {% else %}
       <div class="discription">{{discription}}</div>
-      {% endif %}
   </div>
   
   <div class="line"></div>
-  <div class="post">
-    <h3>post</h3>
-  </div>
+  
+    <div class="buttonsg">
+      <a href="/upload-image">Change Profile Picture</a>
+      
+      {% block contents %}
+        
+      {% endblock contents %}
+        
+      <a href="/change-description">Change Description</a>
+      
+      {% block discription %}
+        
+      {% endblock discription %}
+        
+
+    </div>
+
     
 </div>
 

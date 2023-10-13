@@ -1,0 +1,30 @@
+textarea{
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 70px;
+    margin-top: 3%;
+    margin-left: 18%;
+    color: black;
+    padding: 3px;
+}
+
+button{
+    height: 20px;
+    width: 50px;
+    margin-left: 45%;
+    margin-top: 3%;
+}
+label{
+    display: none;
+}
+.buttonsg{
+    margin-top: 5%;
+    margin-top:20%;
+    height: 110%;
+}
+.buttonsg a{
+    height: 25%;
+}
+.line{
+    margin-top: 15%;
+}

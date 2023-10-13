@@ -1,10 +1,13 @@
-from django.shortcuts import render, HttpResponse, redirect
-from social_media_app.models import User,UserProfile
-from datetime import date,datetime
+from django.shortcuts import render, redirect
+from social_media_app.models import User,UserProfile,Profile
+from datetime import date
 from django.contrib.auth.models import auth
-from .forms import Profile
-# Create your views here.
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+from django.views.generic.list import ListView
+from .forms import ImageUploadForm,DiscriptionChangeForm
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 def home_view(request):
@@ -19,8 +22,6 @@ def tab1_view(request):
         name = request.POST['name']
         gender = request.POST['gender']
         country = request.POST['country']
-
-        # Save form data to the session
         request.session['tab1_data'] = {
             'name': name,
             'gender': gender,
@@ -30,7 +31,6 @@ def tab1_view(request):
         return redirect('tab-2')
     else:
         return render(request, "tab1.html" , {'disable_scroll' : disable_scroll})
-
 
 def calculate_age(birthdate):
     today = date.today()
@@ -43,32 +43,26 @@ def tab2_view(request):
     if authenticated_step<1:
         return redirect('tab-1')
     if request.method == 'POST':
-        birthdate_str = request.POST.get('birthdate')  # Get the birthdate from the form
+        birthdate_str = request.POST.get('birthdate')
         try:
-            # Parse the birthdate string into a date object (assuming it's in "yyyy-mm-dd" format)
             birthdate = date.fromisoformat(birthdate_str)
         except ValueError:
-            # Handle invalid date format
-            # You can add your error handling logic here
             pass
-
         if birthdate:
-            age = calculate_age(birthdate)  # Calculate the age
-            age_str = birthdate.strftime("%d %m %Y")  # Format age as "dd mm yyyy"
+            age = calculate_age(birthdate)  
+            age_str = birthdate.strftime("%d %m %Y")  
 
             tab2_data = {
                 'age': age_str,
             }
-            request.session['tab2_data'] = tab2_data  # Save tab2 data to the session
+            request.session['tab2_data'] = tab2_data  
             if age>=18:
                 return redirect('tab-3')
             else:
                 error_message="*You must be above the age of 18 to create a account"
                 return render(request,'tab2.html',{'error':True,'error_message' : error_message})
-        
     else:
         return render(request, 'tab2.html', {'disable_scroll': disable_scroll})
-
 
 def tab3_view(request): 
     disable_scroll=True
@@ -89,7 +83,6 @@ def tab3_view(request):
             return render(request,'tab3.html',{'error':True,'error_message':error_message})
     else:
         return render(request, 'tab3.html' , {'disable_scroll' : disable_scroll})
-
 
 def tab4_view(request):
     username=request.session.get('username')
@@ -115,39 +108,6 @@ def tab4_view(request):
     else:
         return render(request , 'tab4.html' , {'disable_scroll' : disable_scroll})
 
-
-
-
-
-
-# def tab4_view(request):
-#     if request.method == 'POST':
-#         # Assuming you have a way to create a new user account
-#         # and authenticate the user after submitting data
-#         username = request.POST['username']
-#         password = request.POST['password']
-
-#         # Create a new user account
-#         user = User.objects.create_user(username=username, password=password)
-
-#         # Authenticate the user
-#         auth.login(request, user)
-
-#         # Continue processing the profile image upload
-#         image = request.FILES.get('profilepic')
-#         if image:
-#             user.userprofile.image = image
-#             user.userprofile.save()
-
-#         return redirect('index')
-#     else:
-#         return render(request, 'tab4.html')
-
-
-
-
-
-
 def login_view(request):
     disable_scroll=True
     if request.method == 'POST':
@@ -165,14 +125,11 @@ def login_view(request):
     else:
         return render(request, 'login.html' , {'disable_scroll' : disable_scroll} )
 
-
 def privacy_view(request):
     return render(request,'privacy.html')
 
-
 def about_view(request):
     return render(request,'about.html')
-
 
 def index_view(request):
     username=request.session.get('username')
@@ -185,24 +142,19 @@ def log_out_view(request):
     auth.logout(request)
     return redirect('/')
 
-
-
 @login_required
 def profile_view(request):
     disable_scroll=True
-    form=Profile()
     username=request.session.get('username')
     discription=request.session.get('discription')
     if not discription:
         discription = ""
-    
-    return render(request,'profile.html',{'discription':discription,'username':username,'disable_scroll' : disable_scroll,'form':form})
+    profilepic = UserProfile.objects.get(user=request.user).profilepic  
+    return render(request,'profile.html',{'profilepic':profilepic,'discription':discription,'username':username,'disable_scroll' : disable_scroll})
 
 @login_required
 def create_view(request):
     return render(request,'create.html')
-
-
 
 @login_required
 def settings_view(request):
@@ -210,10 +162,65 @@ def settings_view(request):
     return render(request,'settings.html',{'disable_scroll' : disable_scroll})
 
 @login_required
-def set_theme(request):
-    theme=request.GET.get('theme','')
+def edit_profile_view(request):
+    username=request.session.get('username')
+    discription=request.session.get('discription')
+    profilepic=UserProfile.objects.get(user=request.user).profilepic
+    if not discription:
+        discription=""
+    data={
+        'username':username,
+        'discription':discription,
+        'profilepic':profilepic
 
-    response=HttpResponse()
-    if theme:   
-        response.set_cookie('theme',theme)
-    return response
+    }
+    return render(request,'editprofile.html',data)
+
+class ImageUploadView(FormView):
+    form_class = ImageUploadForm
+    template_name = 'changeprofile.html'
+    success_url = reverse_lazy('profile_view')
+    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        user_profile, created = UserProfile.objects.get_or_create(user=self.request.user)
+        if not created:
+            user_profile.profilepic = form.cleaned_data['profilepic']
+            user_profile.save()
+        else:
+            form.instance.user = self.request.user 
+            form.save()  
+        
+        return super().form_valid(form)
+
+class ImageListView(ListView):
+    model = UserProfile
+    template_name = 'profile.html'
+    context_object_name = 'images'
+
+def change_discription(request):
+    if request.method=="POST":
+        form=DiscriptionChangeForm
+        discription=request.session.get('discription')
+        discriptionnew=request.POST.get('discription')
+        if not discriptionnew:
+            discriptionnew=discription
+        return render(request,'profile.html',{'discriptionnew':discriptionnew})
+    form=DiscriptionChangeForm
+    return render(request,'changediscription.html',{'form':form})
+
+def delete_account_warn(request):
+    return render(request,'deleteaccount.html')
+
+def delete_account(request):
+    
+    user=request.user
+    user.delete()
+    auth.logout(request)
+    return render(request,'confirmdelete.html')
+    
+    
+    

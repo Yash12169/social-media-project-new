@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/deleteaccount.css' %}"/>
+<script src="{% static 'social_media_app/theme.js' %}"></script>
+<div class="container2"></div>
+<div class="container3">
+
+    
+    
+    <div class="head">Are you sure you want to delete your account?</div>
+
+
+    
+    {% block contents %}
+    <form action="delete_account" method="post">
+        <div class="buttonsa">
+            <a href="/confirm-delete">Yes</a>
+            <a href="/Settings">No</a>
+        </div>
+    </form>
+    {% endblock contents %}
+        
+    
+    
+
+        
+</div>
+{% endblock content %}

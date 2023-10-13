@@ -1,0 +1,15 @@
+{% extends 'editprofile.html' %}
+
+{% block discription %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/changediscription.css' %}"/>
+<form method="POST">
+    {% csrf_token %}
+    
+    {{form}} 
+    <br>
+    <button type="submit">Submit</button>
+   
+</form>
+{% endblock discription %}
+    
