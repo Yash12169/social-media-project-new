@@ -72,6 +72,10 @@
       type="text/css"
       href="{% static 'social_media_app/light.css' %}"
     />
+
+
+
+
   </head>
   <body {% if disable_scroll %}class="disable-scrolling" {% endif %}>
     <div class="container1 ">
@@ -145,15 +149,85 @@
 
     {% block content %}
     <div class="container2">
-      <div class="whitespace"></div>
-      <div class="searchbar">
+      <div class="whitespace"></div> <!--flex item 1-->
+
+      <div class="searchbar"> <!--flex item 2-->
         <div class="sea"><input type="text" placeholder="Search" /></div>
         <div class="but"><a href="">Search</a></div>
       </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+      <table>
+        <tbody>
+          {% for post in posts %}
+            {% if post.media %}
+              <tr>
+                <td>
+                 <div class="postbox">
+                  <div class="postdata">
+                    <img src="{{ profilepic.url }}" alt="">
+                    <p>{{ post.user.username }}</p>
+                  </div>
+                  <img src="{{ post.media.url }}" alt="">
+                  <div class="buttonpost">
+                    
+                    <a href=""><img src="https://static.thenounproject.com/png/6200770-200.png" alt="Like"></a>
+                    <a href=""><img src="https://static.thenounproject.com/png/2214605-200.png" alt="Comment"></a>
+                  </div>
+                  <p>{{ post.discription }}</p>
+                 </div>
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      
+
+ 
+    
+    <!-- {% for post in posts %}
+      {% if post.media %}
+        <div class="postbox">
+            <div class="postimage">
+              <img src="{{ post.media.url }}" alt="">
+            </div>
+            <div class="postdes">
+              <p>{{ post.discription }}</p>
+            </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+   -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
       <hr />
     </div>
 
     <div class="container3 dark-container3">
+      <div class="whitespace"></div>
       <div class="head">Suggested for you</div>
     </div>
     {% endblock content %}

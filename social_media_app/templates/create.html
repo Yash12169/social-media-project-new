@@ -7,14 +7,19 @@
 <div class="container3">
 
     
-    
     <div class="head">Drag images or videos from your computer or click on the box below</div>
-    <div class="box"><input type="file" id="inputbox" name="inputbox"><label for="inputbox">Click or drag a file here to upload</label></div>
-    <div class="caption">
-        <textarea name="" id="txt2" cols="30" rows="10" placeholder="Enter a caption for your Image/Video"></textarea>
+    <form enctype="multipart/form-data" method="POST" action="{% url 'Create' %}">
+        {% csrf_token %}
+        <div class="box">
+            {{form.media}}
+        </div>
+        <div class="caption">
+           {{form.discription}}
+        </div>
         <button type="submit" class="crbt">Upload</button>
-    </div>
+    </form>
 
         
 </div>
 {% endblock content %}
+

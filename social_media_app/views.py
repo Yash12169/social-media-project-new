@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from social_media_app.models import User,UserProfile,Profile
+from social_media_app.models import User,UserProfile,Profile,Post
 from datetime import date
 from django.contrib.auth.models import auth
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
-from .forms import ImageUploadForm,DiscriptionChangeForm
+from .forms import ImageUploadForm,DiscriptionChangeForm,CreatePostForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -132,10 +132,17 @@ def about_view(request):
     return render(request,'about.html')
 
 def index_view(request):
+    posts=Post.objects.all().order_by('-created_at')
     username=request.session.get('username')
+    profilepic=None
     if not username:
         username=request.session.get('name')
-    return render(request,'index.html',{'username':username})
+    try:
+        profilepic=UserProfile.objects.get(user=request.user).profilepic
+    except User.DoesNotExist or UserProfile.DoesNotExist:
+        pass
+    return render(request,'index.html',{'posts':posts,'profilepic':profilepic})
+
 
 @login_required
 def log_out_view(request):
@@ -154,7 +161,17 @@ def profile_view(request):
 
 @login_required
 def create_view(request):
-    return render(request,'create.html')
+    if request.method=='POST':
+        form=CreatePostForm(request.POST,request.FILES)
+        if form.is_valid:
+            post=form.save(commit=False)
+            post.user=request.user
+            post.save()
+            return redirect('index')       
+    else:
+        form=CreatePostForm
+    return render(request,'create.html',{'form':form})
+
 
 @login_required
 def settings_view(request):
@@ -172,7 +189,6 @@ def edit_profile_view(request):
         'username':username,
         'discription':discription,
         'profilepic':profilepic
-
     }
     return render(request,'editprofile.html',data)
 
@@ -216,11 +232,8 @@ def delete_account_warn(request):
     return render(request,'deleteaccount.html')
 
 def delete_account(request):
-    
     user=request.user
     user.delete()
     auth.logout(request)
     return render(request,'confirmdelete.html')
-    
-    
     

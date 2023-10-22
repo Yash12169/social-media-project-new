@@ -21,7 +21,7 @@ class Profile(models.Model):
 class Post(models.Model):
     user=models.ForeignKey(User, related_name='post',on_delete=models.CASCADE)
     discription= models.TextField(default="")
-    image= models.FileField(upload_to='posts/', blank=True,null=True)
+    media= models.FileField(upload_to='media/posts/', blank=True,null=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateField(auto_now=True)
 

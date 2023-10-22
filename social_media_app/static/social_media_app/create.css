@@ -30,7 +30,7 @@
     margin-top: -20%;
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
     
 }
@@ -38,7 +38,8 @@
     cursor: pointer;
     height: 100%;
     width: 100%;
-    display: none;
+    display: flex;
+    
 }
 .box label{
     cursor: pointer;
@@ -79,4 +80,36 @@ button{
     margin:auto;
     font-family: "IBM Plex Mono", monospace; 
     font-size: large;
+}
+.box{
+    width: 300%;
+    margin-left: 50%;
+    height: 30%;
+    margin-top: -40%;
+}
+
+.caption{
+    width: 220%;
+    height: 30%;
+    margin-top: 15%;
+    margin-left: 150%;
+    margin-right: auto;
+}
+.crbt{
+    margin-left: 150%;
+    margin-top: 3%;
+    width: 103%;
+}
+::placeholder{
+    color: grey;
+}
+
+.crbt:hover{
+    cursor: pointer;
+    border: 1px solid white;
+    
+    background-color: #c76060;
+}
+input{
+
 }
