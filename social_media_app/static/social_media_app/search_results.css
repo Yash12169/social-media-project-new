@@ -1,0 +1,43 @@
+.container4{
+    width: 800px;
+    height: 400px;
+    background-color: ;
+    margin-top: 7rem;
+    margin-left: -75%;
+    margin-right: 15%;
+
+  }
+  ul{
+    list-style-type: none;
+  }
+
+  .container4 > h1{
+    font-family: "Asap Condensed", sans-serif;
+    font-size: 48px;
+    margin-bottom: 1rem;
+  }
+  a{
+    text-decoration: none;
+  }
+  .profilepic{
+    height: 35px;
+    width: 35px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: beige;
+  }
+
+  .showsearch{
+    display:flex;
+  }
+  .texti{
+    display: flex;
+    flex-direction: column;
+  }
+  .profilepic>img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    margin-top: -1px;
+  }

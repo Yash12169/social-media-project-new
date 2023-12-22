@@ -1,0 +1,142 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    height:40rem;
+    width: 70rem;
+    background-color: ;
+    display: flex;
+    margin-top: 2rem;
+    border: 1px solid black;
+    border-radius: 20px;
+    
+}
+.image,.commentsec{
+    width: 50%;
+    height: 100%;
+    border: 1px solid white;
+    
+}
+.image{
+    background-color: ;
+    border-radius:20px 0px 0px 20px;
+}
+.commentsec{
+    background-color: ;
+    border-radius:0px 20px 20px 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.selfcomment{
+    width: 100%;
+    height: 30%;
+    background-color: ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.othercomment{
+    width: 100%;
+    height: 70%;
+    background-color: ;
+    overflow: auto;
+}
+::placeholder{
+    font-style: italic;
+}
+.buttoncom{
+    background-color: #da6a6a;
+    font-size: large;
+    width: 20%;
+    height: 15%;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    font-family: "IBM Plex Mono", monospace;
+    margin-left: 52%;
+    margin-top: 1%;
+}
+textarea{
+    border: 1px solid #da6a6a;
+    border-radius: 20px;
+    width: 50%;
+    height: 40%;
+    padding: 1rem;
+    margin-left: 16%;
+    margin-top:2rem;
+}
+.commentbox{
+    width: 100%;
+    height: 15%;
+    background-color: ;
+    display: flex;
+    flex-direction: row;
+}
+.image >img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+    border-radius:20px 0px 0px 20px;
+}
+.imagei{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.imagei > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.deletecomm{
+    height: 25px;
+    width: 25px;
+    
+}
+#othercommentform{
+    margin-left: auto;
+}
+
+#delbutton{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}   
+#delbutton img{
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+.createdat{
+    margin-left: auto;
+}
+.whitespace{
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+.back{
+    height: 35px;
+    width: 60px;
+    background-color: #da6a6a;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    margin-top: 35px;
+    margin-right: -30px;
+    margin-left: 20px;
+}
+.back > a{
+    text-decoration: none;
+    color: white;
+    font-family: "IBM Plex Mono", monospace;
+}

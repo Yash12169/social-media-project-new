@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block search %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/search_results.css' %}"/>
+
+    <div class="container4">
+       <h1> Search results for {{search_query}}</h1>
+       <ul>
+            {% for user in users %}
+            <div class="showsearch">
+                <li class="profilepic"><img src="{{user.profilepic.url}}" alt=""></li>
+                <div class="texti">
+                    <li><a href="{% url 'user_profile' user.user.username   %}">{{user.user.username}}</a></li>
+                    <li><a href="{% url 'user_profile' user.user.username  %}">956 followers 1000 following</a></li>
+                </div>
+            </div>
+            {% empty %}
+                <li>no matching users found</li>
+            {% endfor %}    
+       </ul>
+    </div>
+{% endblock search %}
+    

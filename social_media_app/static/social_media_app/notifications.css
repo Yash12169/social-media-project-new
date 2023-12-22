@@ -1,0 +1,60 @@
+.head{
+    color: #da6a6a;
+    font-family: 'Montserrat', sans-serif;
+    /* margin-left: 250px; */
+}
+
+.notification-item{
+    
+    /* background-color:lightseagreen; */
+    width: 100%;
+    height: 70px;
+    margin-top: 200px;
+    margin-left: -765px;
+    display: flex;
+   
+
+}
+.notification-item:hover{
+    background-color: rgb(193, 193, 193);
+}
+.notibuttons{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    width: 25%;
+    justify-content: space-between;
+}
+.confirm-button{
+    background-color: #24a0ed;
+   
+    height: 60%;
+    border-radius: 20px;
+    width: 45%;
+}
+.del-button{
+    background-color: rgb(217, 16, 16);
+    margin-left: 2%;
+    border-radius: 20px; 
+    width: 45%;
+    height: 60%;
+}
+.del-button a , .confirm-button a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+.matter{
+    font-size: large;
+    width: 75%;
+    height: 100%;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    align-items: center;
+    /* background-color: blueviolet; */
+}

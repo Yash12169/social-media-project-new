@@ -25,7 +25,19 @@ urlpatterns = [
    path('change-description/',views.change_discription,name='change-discription'),
    path('delete-warning/',views.delete_account_warn,name='delete-warning'),
    path('confirm-delete/',views.delete_account,name='confirm-delete'),
-   
+   path('Delete-post/<int:post_id>/',views.delete_post,name='Delete-post'),
+   path('Like-post/<int:post_id>/',views.like_post,name='Like-post'),
+   path('comment/<int:post_id>/',views.comment_page,name='comment'),
+   path('add_comment/<int:post_id>/',views.add_comment,name='add_comment'),
+   path('delete_comment/<int:post_id>/<int:comment_id>/',views.delete_comment,name='delete_comment'),
+   path('Search/',views.user_search,name='Search'),
+   path('profile/<str:username>/',views.user_profile,name='user_profile'),
+   path('follow-user/<str:username>/',views.follow_user,name='follow-user'),
+   path('Notification/',views.follow_request_view,name='notification'),
+   path('confirm-follow/<int:follow_id>/',views.confirm_follow_request,name='confirm-follow'),
+   path('delete-follow/<int:follow_id>/',views.delete_request_view,name='delete-follow'),
+   path('Unfollow/<str:username>/',views.unfollow_user,name='Unfollow'),
+   path('inbox/',views.inbox_view,name="inbox"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

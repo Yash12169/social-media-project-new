@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block notifications %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/notifications.css' %}"/>
+  <div class="container2">
+    <div class="head headi">
+        <h1>Notifications</h1>
+    </div>
+  
+  
+    {% for f in follow_request %}
+    
+    <div class="notification-item">
+        <div class="matter">
+            <img src="{{ profilepic }}" alt="">
+            <p>{{f.follower}} sent you a follow request</p>
+        </div>  
+        <div class="notibuttons">
+            <div class="confirm-button">
+                <a href="{% url 'confirm-follow' f.id %}">Confirm</a>
+            </div>
+            <div class="del-button">
+                <a href="{% url 'delete-follow' f.id %}">Delete</a>
+            </div>
+        </div> 
+    </div>
+    {% endfor %}
+  </div>
+   
+    
+{% endblock notifications %}
+    

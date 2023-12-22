@@ -1,0 +1,90 @@
+{% extends 'profile.html' %}
+{% block anotherprofile %}
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'social_media_app/user_profile.css' %}"
+/>
+
+<div class="container2 disable-scrolling">
+  <div class="large">
+    <div class="profilepic">
+        <img src="{{ profilepic }}" alt="{{ profilepic.profilepic.name }}" />
+      </div>
+    
+    <div class="details">
+       <div class="barone">
+        <div class="name">
+            {{user_profile.user}}
+        </div>
+        
+        {% if user_profile.user != request.user %} 
+
+
+        
+            {% if follow_status == 'requested' %}
+            <div class="UnfollowButtonn">
+                
+            </div>
+                <div class="followbutton" id="requested">
+                    <a href="{% url 'follow-user' user_profile.user %}">Requested</a>
+                </div>
+                
+            {% elif follow_status == 'confirmed' %}
+            
+            
+                <div class="followingbutton">
+                    <a href="{% url 'follow-user' user_profile.user %}">Following</a>
+                    
+                </div>
+                <div class="UnfollowButton">
+                    <a href="{% url 'Unfollow' user_profile.user %}">Unfollow</a> 
+                </div>
+            {% else  %}
+            <div class="UnfollowButtonn">
+                 
+            </div>
+                <div class="followbutton">
+                    <a href="{% url 'follow-user' user_profile.user %}">Follow</a>
+                </div>
+            {% endif %}   
+
+
+        {% endif %}
+       </div>
+        <div class="status">
+          <span>{{follower_count}} followers</span> 
+          <span>{{following_count}} following</span> 
+          <span>{{post_count}} posts</span>
+        </div>
+
+        <div class="discription">
+            {{user_profile.discription}}
+        </div>
+    </div>
+  </div>
+
+<div class="line"></div>
+<div class="post">
+    <h3>Posts</h3>
+    <div class="allpost"> 
+        
+        {% if post_count != 0 and security %}
+            {% for post in posts %}
+                <img src="{{post.media.url}}" alt="">
+            {% endfor %}    
+
+        {% elif security == False %}
+        <p></p>
+        <p>this account is private</p>
+        {% else %}
+        <p></p>
+        <p>when you share photos they will appear here</p>
+        {% endif %}
+            
+       
+    </div>
+</div>
+</div>
+{% endblock anotherprofile %}

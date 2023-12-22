@@ -12,18 +12,6 @@ class DiscriptionChangeForm(forms.ModelForm):
         model=Profile
         fields=['discription']
 
-
-# class CreatePostForm(forms.ModelForm):
-#     class Meta:
-#         model=Post
-#         fields=['media','discription']
-#         widgets = {
-#             'discription': forms.Textarea(attrs={'placeholder': 'Enter description here'}),
-            
-#         }
-
-
-
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -33,3 +21,7 @@ class CreatePostForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'placeholder': 'Enter description here'}),
         label='Custom Label for Description'
     )
+
+class UserSearchForm(forms.ModelForm):
+    search_query = forms.CharField(max_length=100)
+

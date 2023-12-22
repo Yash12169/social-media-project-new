@@ -1,5 +1,9 @@
 {% extends 'index.html' %} 
 {% block content %} 
+{% block anotherprofile %}
+  
+
+  
 {% load static %}
 <link  rel="stylesheet" type="text/css" href="{% static 'social_media_app/profile.css' %}"/>
 
@@ -16,7 +20,7 @@
   <div class="details">
       <div class="name">{{username}}</div>
       
-      <div class="status"><span> 0 followers</span>  <span>0 following</span>  <span>0 posts</span></div>
+      <div class="status"><span> 0 followers</span>  <span>0 following</span>  <span>{{post_count}} posts</span></div>
       {% if discriptionnew %}
       <div class="discription">{{discriptionnew}}</div>
       {% else %}
@@ -30,5 +34,5 @@
   </div>
     
 </div>
-
+{% endblock anotherprofile %}
 {% endblock content %}

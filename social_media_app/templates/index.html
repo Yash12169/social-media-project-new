@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -104,7 +106,7 @@
         </a>
       </div>
       <div class="buttons">
-        <a href=""
+        <a href="{% url 'inbox' %}"
           ><img
             src="https://cdn-icons-png.flaticon.com/128/3034/3034023.png"
             alt=""
@@ -112,7 +114,7 @@
         >
       </div>
       <div class="buttons">
-        <a href=""
+        <a href="{% url 'notification' %}"
           ><img
             src="https://cdn-icons-png.flaticon.com/128/2645/2645897.png"
             alt=""
@@ -150,12 +152,35 @@
     {% block content %}
     <div class="container2">
       <div class="whitespace"></div> <!--flex item 1-->
-
-      <div class="searchbar"> <!--flex item 2-->
-        <div class="sea"><input type="text" placeholder="Search" /></div>
-        <div class="but"><a href="">Search</a></div>
-      </div>
       
+      <!-- <div class="searchbar"> 
+        <div class="sea"><input type="text" placeholder="Search" name="search_query" /></div>
+        <div class="but"><a href="">Search</a></div>
+      </div> -->
+      
+      
+      {% block notifications %}
+        
+      
+        
+      
+        <form method="POST" class="searchbar" action="{% url 'Search' %}">
+          {% csrf_token %}
+        <div class="sea"><input type="text" placeholder="Search" name="search_query" /></div>
+        <div class="but"><button type="submit">Search</button></div>
+      </form>
+      
+
+        
+      {% block search %}
+          
+      
+          
+       <!-- <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Search</button>
+       </form> -->
 
 
 
@@ -174,17 +199,64 @@
               <tr>
                 <td>
                  <div class="postbox">
+                  
                   <div class="postdata">
-                    <img src="{{ profilepic.url }}" alt="">
+                    
+                    {% if userprofile %}
+                      <img src="{{post.user_profile.profilepic.url}}" alt="">
+                    {%else%}
+                      <img src="https://static.thenounproject.com/png/138926-200.png" alt="">
+                    {% endif %}
+                      
+                    
                     <p>{{ post.user.username }}</p>
                   </div>
+                  
                   <img src="{{ post.media.url }}" alt="">
+                  
                   <div class="buttonpost">
+
+
+
+
+
                     
-                    <a href=""><img src="https://static.thenounproject.com/png/6200770-200.png" alt="Like"></a>
-                    <a href=""><img src="https://static.thenounproject.com/png/2214605-200.png" alt="Comment"></a>
+                  {% if request.user.id != post.user.id %}
+                    <form class="like-form" method="POST" action="{% url 'Like-post' post.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="like-button {% if request.user in post.likes.all %}liked{% endif %}">
+                          <img src="https://static.thenounproject.com/png/6200770-200.png" alt="Like">
+                      </button>
+                    </form>
+                 
+                  {% endif %}
+                  
+
+
+
+
+
+
+                    <a href="{% url 'comment' post.id %}"><img src="https://static.thenounproject.com/png/2214605-200.png" alt="Comment"></a>
+                    
+                    
+
+                    
+
+
+
+
+
+
+                    {% if post.user == request.user %}
+                      <a href="{% url 'Delete-post' post.id %}" id="delbutton"><img src="https://static.thenounproject.com/png/6210056-200.png" alt="Delete"></a>
+                    {% endif %}
                   </div>
+                  <span class="likes like-count">{{post.likes_count}} Likes</span>
+                  <span class="likes like-count">{{post.comment_count}} Comments</span>
+
                   <p>{{ post.discription }}</p>
+                  
                  </div>
                 </td>
               </tr>
@@ -214,18 +286,19 @@
 
 
 
+   
 
 
 
 
 
-
-
-
-
+   
+   {% endblock search %}
+   
       <hr />
+      {% endblock notifications %}
     </div>
-
+    
     <div class="container3 dark-container3">
       <div class="whitespace"></div>
       <div class="head">Suggested for you</div>
@@ -277,5 +350,44 @@
           });
       });
     </script>
+    <script>
+     $(document).ready(function () {
+    $("form.like-form").on("submit", function (e) {
+        e.preventDefault();
+        var form = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: form.serialize(),
+            success: function (data) {
+                if (data.liked) {
+                    // User liked the post
+                    form.find("button").addClass("liked");  // Add a class to style the button as liked
+                } else {
+                    // User unliked the post
+                    form.find("button").removeClass("liked");  // Remove the class to style the button as unliked
+                }
+
+                // Update the like count immediately
+                var likeCountElement = form.siblings(".like-count");
+                likeCountElement.text(data.likes_count);
+
+                // Reload the page after a short delay (adjust the delay as needed)
+                setTimeout(function() {
+                    window.location.reload();
+                }); // Reload after 1 second (adjust the delay as needed)
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
+    });
+});
+
+
+    </script>
+
+    
   </body>
 </html>

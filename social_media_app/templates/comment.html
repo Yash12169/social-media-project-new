@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'social_media_app/comment.css' %}"/>
+</head>
+<body>
+    <div class="container">
+
+
+        <div class="image">
+            <img src="{{post.media.url}}" alt="">
+        </div>
+
+
+
+        <div class="commentsec">
+            <div class="selfcomment">
+                <form method="post" action="{% url 'add_comment' post_id %}">
+                    {% csrf_token %}
+                    <textarea name="text" id="" cols="30" rows="10" placeholder="Enter your comment here!" required></textarea>
+                    <button type="submit" class="buttoncom">Comment</button>
+                </form>
+            </div>
+            <div class="whitespace"></div>
+            <div class="othercomment">
+                
+                {% for comment in comments %}
+                    <div class="commentbox">
+                        <div class="imagei"><img src="{{comment.author.profilepic.url}}" alt=""></div>
+                        <div class="sec">
+                            <div class="username">{{comment.author.user}}</div>
+                            <div class="commenttext">{{comment.text}}</div>
+                            <div class="createdat">{{comment.created_at}}</div>
+                        </div>
+                        
+                        {% if comment.author.user == request.user %} 
+                        <form id="othercommentform" action="{% url 'delete_comment' post.id comment.id %} " method="POST">
+                            {% csrf_token %}
+                            <div class="deletecomm">
+                                <button id="delbutton" type="submit"><img src="https://static.thenounproject.com/png/6210056-200.png" alt="comment image"></button>
+                            </div>
+                        </form>
+                        {% endif %}
+                
+                    </div>
+                    <hr>
+                {% endfor %}
+                    
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="back">
+        <a href="{% url 'index' %}">Back</a>
+    </div>
+</body>
+</html>
